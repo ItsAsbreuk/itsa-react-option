@@ -455,6 +455,8 @@
             "description": "Returns an array based upon `checked`, with the length of `this.props.options`,\nwhere only one item is `true` and the rest will be set `false`. The checked item is the first\nitem of the `this.props.checked` array.\n\nThis will quarantee that there is only 1 option marked as being selected.\nOnly be needed whenever `this.props.multi`===false.",
             "itemtype": "method",
             "name": "_toOnlyOne",
+            "access": "private",
+            "tagname": "",
             "params": [
                 {
                     "name": "checked",

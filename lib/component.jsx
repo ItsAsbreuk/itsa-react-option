@@ -490,6 +490,7 @@ const Component = React.createClass({
      * Only be needed whenever `this.props.multi`===false.
      *
      * @method _toOnlyOne
+     * @private
      * @param checked {Array} the checked-array
      * @return {Array} with max. one item `true`
      * @since 15.0.0
