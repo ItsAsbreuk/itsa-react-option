@@ -1,0 +1,475 @@
+{
+    "project": {
+        "name": "itsa-react-option",
+        "description": "React-Component: itsa-react-option",
+        "logo": "https://avatars0.githubusercontent.com/u/8314644?v=3&s=84",
+        "version": "0.0.1"
+    },
+    "files": {
+        "lib/component.jsx": {
+            "name": "lib/component.jsx",
+            "modules": {
+                "option/lib/component.jsx": 1
+            },
+            "classes": {
+                "Option": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "option/lib/component.jsx": {
+            "name": "option/lib/component.jsx",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "Option": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/component.jsx",
+            "line": 4,
+            "description": "React Option element.\n\n\n\n<i>Copyright (c) 2016 ItsAsbreuk - http://itsasbreuk.nl</i><br>\nNew BSD License - http://choosealicense.com/licenses/bsd-3-clause/",
+            "since": "15.0.0"
+        }
+    },
+    "classes": {
+        "Option": {
+            "name": "Option",
+            "shortname": "Option",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "option/lib/component.jsx",
+            "namespace": "",
+            "file": "lib/component.jsx",
+            "line": 4,
+            "description": "React Option element.\n\n\n\n<i>Copyright (c) 2016 ItsAsbreuk - http://itsasbreuk.nl</i><br>\nNew BSD License - http://choosealicense.com/licenses/bsd-3-clause/"
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "lib/component.jsx",
+            "line": 43,
+            "description": "Whether to autofocus the Component.",
+            "itemtype": "property",
+            "name": "autoFocus",
+            "type": "Boolean",
+            "default": "false",
+            "since": "0.0.1",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 53,
+            "description": "A number -or Array with numbers- that define the option that is selected",
+            "itemtype": "property",
+            "name": "checked",
+            "type": "Number|Array",
+            "since": "0.0.1",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 62,
+            "description": "Whether render the options as HTML. When set `false`, they will be plain text, removed from any html-entities.",
+            "itemtype": "property",
+            "name": "dangerousInnerHTML",
+            "type": "Boolean",
+            "default": "false",
+            "since": "0.0.1",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 72,
+            "description": "Whether the focuscontainer is disabled (doesn\"t response to focusevents)",
+            "itemtype": "property",
+            "name": "disabled",
+            "type": "Boolean",
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 81,
+            "description": "Render-function for the options. You can use this property to override the default\nrenderer. When not set, the default-renderer will be used.\n\nThis function gets called for every option of the `this.props.options` array.\nThe function recieves 3 arguments: `option`, `index`, `checked`\nShould return a JSX li-element.",
+            "itemtype": "property",
+            "name": "ItemRenderer",
+            "type": "Function",
+            "return": {
+                "description": "JSX li-element"
+            },
+            "since": "0.0.1",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 96,
+            "description": "What key/keys are responsible for re-focussing `down`. Valid values are charcodes possible prepende with\na special key: 9 or `shift+9` or `ctrl+shift+9`. Multiple key combinations can be defined bydefining an array of keyDown-values.",
+            "itemtype": "property",
+            "name": "keyDown",
+            "default": "40",
+            "type": "String|number|Array",
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 107,
+            "description": "Whenever `keyEnter` is set, then the focus-container will become a `nested`- focuscontainer.\nNested focuscontainers will automaticcaly become focussable by their parent-container.\n\nThe `keyEnter` determines what key/keys are responsible for `entering` this container. Valid values are charcodes possible prepende with\na special key: 39 or `shift+39` or `ctrl+shift+39`. Multiple key combinations can be defined bydefining an array of keyUp-values.",
+            "itemtype": "property",
+            "name": "keyEnter",
+            "default": "13",
+            "type": "String|number|Array",
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 121,
+            "description": "The `keyLeave` determines what key/keys are responsible for `leaving` this container and go to the parent focus-container.\nValid values are charcodes possible prepende with\na special key: 39 or `shift+39` or `ctrl+shift+39`. Multiple key combinations can be defined bydefining an array of keyUp-values.",
+            "itemtype": "property",
+            "name": "keyLeave",
+            "default": "27",
+            "type": "String|number|Array",
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 133,
+            "description": "What key/keys are responsible for selecting an option by keyboard. Valid values are charcodes possible prepended with\na special key: 9 or `shift+9` or `ctrl+shift+9`. Multiple key combinations can be defined bydefining an array of keyUp-values.",
+            "itemtype": "property",
+            "name": "keyUp",
+            "default": "[13, 32]",
+            "type": "String|number|Array",
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 144,
+            "description": "What key/keys are responsible for re-focussing `up`. Valid values are charcodes possible prepended with\na special key: 9 or `shift+9` or `ctrl+shift+9`. Multiple key combinations can be defined bydefining an array of keyUp-values.",
+            "itemtype": "property",
+            "name": "keyUp",
+            "default": "38",
+            "type": "String|number|Array",
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 155,
+            "description": "Whether the loop the focus when the last/first option is reached.",
+            "itemtype": "property",
+            "name": "loop",
+            "default": "false",
+            "type": "Boolean",
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 165,
+            "description": "Whether multiple options can be selected at the same time.",
+            "itemtype": "property",
+            "name": "multi",
+            "default": "false",
+            "type": "Boolean",
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 175,
+            "description": "Callback whenever a new value is set. The callbackFn will recieve 1 argment: the new `checked` option(s).\nWhich is a `number` in case `props.multi`===fals,e, otherwise it is an array with numbers.",
+            "itemtype": "property",
+            "name": "onChange",
+            "required": 1,
+            "type": "Function",
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 186,
+            "description": "Callback for when the component did mount.",
+            "itemtype": "property",
+            "name": "onMount",
+            "type": "Function",
+            "since": "15.0.8",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 195,
+            "description": "List with all options",
+            "itemtype": "property",
+            "name": "options",
+            "type": "Array",
+            "required": 1,
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 205,
+            "description": "Whether the focussed option should be scrolled into the view when the focusselector focuses it.",
+            "itemtype": "property",
+            "name": "scrollIntoView",
+            "default": "false",
+            "type": "String",
+            "since": "15.0.30",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 215,
+            "description": "Inline styles for the focus-container",
+            "itemtype": "property",
+            "name": "style",
+            "type": "Object",
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 224,
+            "description": "The tabIndex",
+            "itemtype": "property",
+            "name": "tabIndex",
+            "type": "Number",
+            "since": "0.0.1",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 233,
+            "description": "The transition-time when the window needs to be scrolled in order to get the focussable node into the view.",
+            "itemtype": "property",
+            "name": "transitionTime",
+            "type": "Number",
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 243,
+            "description": "componentDidMount will call `this.activatePlaces()`;",
+            "itemtype": "method",
+            "name": "componentDidMount",
+            "since": "0.0.1",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 256,
+            "description": "Returns the default properties.",
+            "itemtype": "method",
+            "name": "getDefaultProps",
+            "since": "0.0.1",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 277,
+            "description": "Returns the index of the first option that is selected",
+            "itemtype": "method",
+            "name": "getFirstSelected",
+            "return": {
+                "description": "the index (if any) of the first selected option",
+                "type": "Number|undefined"
+            },
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 299,
+            "description": "Sets a new option.",
+            "itemtype": "method",
+            "name": "handleSetOption",
+            "params": [
+                {
+                    "name": "index",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "since": "0.0.1",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 330,
+            "description": "Sets the focus on the active Element of the Container.",
+            "itemtype": "method",
+            "name": "focus",
+            "chainable": 1,
+            "since": "0.0.1",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 344,
+            "description": "Sets the focus on the specified Element of the Container.",
+            "itemtype": "method",
+            "name": "focusOption",
+            "params": [
+                {
+                    "name": "index",
+                    "description": "the index of the option to be focussed",
+                    "type": "Number"
+                }
+            ],
+            "chainable": 1,
+            "since": "0.0.1",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 357,
+            "description": "Render-function for the options. You can use this property to override the default\nrenderer. When not set, the default-renderer will be used.",
+            "itemtype": "method",
+            "name": "renderItem",
+            "params": [
+                {
+                    "name": "option",
+                    "description": "the option to be rendered",
+                    "type": "String"
+                },
+                {
+                    "name": "i",
+                    "description": "the index of the option",
+                    "type": "Number"
+                },
+                {
+                    "name": "checked",
+                    "description": "the index of the option to be focussed\nreturn {JSX} li-element for the option",
+                    "type": "Number"
+                }
+            ],
+            "since": "0.0.1",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 389,
+            "description": "Callback for the keypress event.",
+            "itemtype": "method",
+            "name": "handleKeyPress",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 409,
+            "description": "Tells ifthe Component has a valid option selected.",
+            "itemtype": "method",
+            "name": "isValid",
+            "return": {
+                "description": "whether the Component has a valid option selected",
+                "type": "Boolean"
+            },
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 422,
+            "description": "React render-method --> renderes the Component.",
+            "itemtype": "method",
+            "name": "render",
+            "return": {
+                "description": "ReactComponent"
+            },
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 470,
+            "description": "Returns a save string",
+            "itemtype": "method",
+            "name": "_saveHTML",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "String",
+                    "description": "html the text that should be removed from any html-entities"
+                }
+            ],
+            "return": {
+                "description": "String"
+            },
+            "since": "0.0.1",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        },
+        {
+            "file": "lib/component.jsx",
+            "line": 484,
+            "description": "Returns an array based upon `checked`, with the length of `this.props.options`,\nwhere only one item is `true` and the rest will be set `false`. The checked item is the first\nitem of the `this.props.checked` array.\n\nThis will quarantee that there is only 1 option marked as being selected.\nOnly be needed whenever `this.props.multi`===false.",
+            "itemtype": "method",
+            "name": "_toOnlyOne",
+            "params": [
+                {
+                    "name": "checked",
+                    "description": "the checked-array",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "with max. one item `true`",
+                "type": "Array"
+            },
+            "since": "15.0.0",
+            "class": "Option",
+            "module": "option/lib/component.jsx"
+        }
+    ],
+    "warnings": []
+}

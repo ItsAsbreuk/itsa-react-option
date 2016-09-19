@@ -1,0 +1,66 @@
+$item_space: 0.3em;
+$bullet_size: 1.5em;
+$bullet_border_size: 3px;
+$bullet_padding: 2px;
+$option-text-margin: 0.5em;
+$bullet_border_color: #000;
+$bullet_inner_color: #FFF;
+$bullet_checked_color: #0078E7;
+$focus-color: #0078E7;
+
+.itsa-option ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 0;
+}
+
+.itsa-option-option {
+    margin: $item_space 0;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.itsa-option-option:focus {
+    outline: 0;
+    .itsa-option-text {
+        color: $focus-color;
+    }
+}
+
+.itsa-option-bullet {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    width: $bullet_size;
+    height: $bullet_size;
+    border-radius: 100%;
+    border: solid $bullet_border_size $bullet_border_color;
+    padding: $bullet_padding;
+    background-color: $bullet_inner_color;
+    vertical-align: middle;
+}
+
+.itsa-option-bullet-inner {
+    opacity: 0;
+    background-color: $bullet_checked_color;
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+}
+
+.itsa-option-checked {
+    opacity: 1;
+}
+
+.itsa-option-text {
+    padding-left: $option-text-margin;
+    vertical-align: middle;
+    display: inline-block;
+}
