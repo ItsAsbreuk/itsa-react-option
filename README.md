@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/ItsAsbreuk/itsa-react-option.svg?branch=master)](https://travis-ci.org/ItsAsbreuk/itsa-react-option)
 
-Beautiful iOS-stylisch checkbox for react.
+Beautiful option-list for react.
 
-Lightweight, focussable and responses to the spacebar.
+Lightweight, focussable and key-responsive.
 
 ## How to use:
 
