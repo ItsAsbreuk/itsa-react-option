@@ -1,4 +1,3 @@
-
 "use strict";
 
 /**
@@ -213,6 +212,15 @@ const Component = React.createClass({
         scrollIntoView: PropTypes.bool,
 
         /**
+         * Selector on which the focusmanager should check against when refocussing
+         *
+         * @property selector
+         * @type String
+         * @since 15.0.0
+        */
+        selector: PropTypes.string,
+
+        /**
          * Inline styles for the focus-container
          *
          * @property style
@@ -269,7 +277,8 @@ const Component = React.createClass({
             keyUp: 38,
             loop: false,
             multi: false,
-            scrollIntoView: false
+            scrollIntoView: false,
+            selector: ".itsa-option-option"
         };
     },
 
@@ -312,10 +321,10 @@ const Component = React.createClass({
             if (!instance.props.multi) {
                 newValue = index;
             } else {
-                newValue = typeof checked === "number" ? [checked] : checked.itsa_deepClone();
+                newValue = (typeof checked === "number") ? [checked] : checked.itsa_deepClone();
                 if (newValue.itsa_contains(index)) {
                     // remove option
-                    newValue.length > 1 && newValue.itsa_remove(index);
+                    (newValue.length > 1) && newValue.itsa_remove(index);
                 } else {
                     newValue.push(index);
                 }
@@ -434,7 +443,7 @@ const Component = React.createClass({
             propsClass = props.className,
             checked = (typeof propsChecked === "number") ? [propsChecked] : propsChecked,
             checkedSingleCorrected = props.multi || instance._toOnlyOne(checked),
-            itemRenderer = props.itemRenderer ? props.itemRenderer.bind(instance) : instance.renderItem,
+            itemRenderer = props.itemRenderer || instance.renderItem,
             dangerousInnerHTML = props.dangerousInnerHTML,
             options = props.options.map((option, i) => itemRenderer(dangerousInnerHTML ?
                                                                     option :
@@ -455,7 +464,7 @@ const Component = React.createClass({
                 onMount={props.onMount}
                 ref="focus-container"
                 scrollIntoView={props.scrollIntoView}
-                selector=".itsa-option-option"
+                selector={props.selector}
                 style={props.style}
                 tabIndex={props.tabIndex}
                 transitionTime={props.transitionTime} >
