@@ -7,6 +7,8 @@ $bullet_border_color: #000;
 $bullet_inner_color: #FFF;
 $bullet_checked_color: #0078E7;
 $focus-color: #0078E7;
+$bullet_border_color_disabled: #CCC;
+$bullet_inner_color_disabled: #F9F9F9;
 
 .itsa-option ul {
     list-style: none;
@@ -19,6 +21,13 @@ $focus-color: #0078E7;
     margin: $item_space 0;
     cursor: pointer;
     white-space: nowrap;
+}
+
+.itsa-option-readonly,
+.itsa-option-disabled {
+    .itsa-option-option {
+        cursor: default;
+    }
 }
 
 .itsa-option-option:focus {
@@ -63,4 +72,19 @@ $focus-color: #0078E7;
     padding-left: $option-text-margin;
     vertical-align: middle;
     display: inline-block;
+}
+
+.itsa-option-disabled {
+    .itsa-option-bullet {
+        border: solid $bullet_border_size $bullet_border_color_disabled;
+        background-color: $bullet_inner_color_disabled;
+    }
+    .itsa-option-checked {
+        opacity: 0.4;
+    }
+    .itsa-option-option:focus {
+        .itsa-option-text {
+            color: inherit;
+        }
+    }
 }

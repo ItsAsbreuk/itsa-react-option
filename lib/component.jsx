@@ -15,11 +15,13 @@
 */
 
 const React = require("react"),
-    PropTypes = React.PropTypes,
+    PropTypes = require("prop-types"),
     ReactDom = require("react-dom"),
     async = require("itsa-utils").async,
     FocusContainer = require("itsa-react-focuscontainer"),
     MAIN_CLASS = "itsa-option",
+    DISABLED_CLASS = MAIN_CLASS + "-disabled",
+    READONLY_CLASS = MAIN_CLASS + "-readonly",
     OPTION_ITEM_CLASS = MAIN_CLASS + "-option",
     OPTION_BULLET_CLASS = MAIN_CLASS + "-bullet",
     OPTION_BULLET_INNER_CLASS = OPTION_BULLET_CLASS + "-inner",
@@ -37,216 +39,20 @@ const sortFn = (a, b) => {
     return 0;
 };
 
-const Component = React.createClass({
-    propTypes: {
-        /**
-         * Whether to autofocus the Component.
-         *
-         * @property autoFocus
-         * @type Boolean
-         * @default false
-         * @since 0.0.1
-        */
-        autoFocus: PropTypes.bool,
-
-        /**
-         * A number -or Array with numbers- that define the option that is selected
-         *
-         * @property checked
-         * @type Number|Array
-         * @since 0.0.1
-        */
-        checked: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
-
-        /**
-         * Whether render the options as HTML. When set `false`, they will be plain text, removed from any html-entities.
-         *
-         * @property dangerousInnerHTML
-         * @type Boolean
-         * @default false
-         * @since 0.0.1
-        */
-        dangerousInnerHTML: PropTypes.bool,
-
-        /**
-         * Whether the focuscontainer is disabled (doesn"t response to focusevents)
-         *
-         * @property disabled
-         * @type Boolean
-         * @since 15.0.0
-        */
-        disabled: PropTypes.bool,
-
-        /**
-         * Render-function for the options. You can use this property to override the default
-         * renderer. When not set, the default-renderer will be used.
-         *
-         * This function gets called for every option of the `this.props.options` array.
-         * The function recieves 3 arguments: `option`, `index`, `checked`
-         * Should return a JSX li-element.
-         *
-         * @property ItemRenderer
-         * @type Function
-         * @return JSX li-element
-         * @since 0.0.1
-        */
-        itemRenderer: PropTypes.func,
-
-        /**
-         * What key/keys are responsible for re-focussing `down`. Valid values are charcodes possible prepende with
-         * a special key: 9 or `shift+9` or `ctrl+shift+9`. Multiple key combinations can be defined bydefining an array of keyDown-values.
-         *
-         * @property keyDown
-         * @default 40
-         * @type String|number|Array
-         * @since 15.0.0
-        */
-        keyDown: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.array]),
-
-        /**
-         * Whenever `keyEnter` is set, then the focus-container will become a `nested`- focuscontainer.
-         * Nested focuscontainers will automaticcaly become focussable by their parent-container.
-         *
-         * The `keyEnter` determines what key/keys are responsible for `entering` this container. Valid values are charcodes possible prepende with
-         * a special key: 39 or `shift+39` or `ctrl+shift+39`. Multiple key combinations can be defined bydefining an array of keyUp-values.
-         *
-         * @property keyEnter
-         * @default 13
-         * @type String|number|Array
-         * @since 15.0.0
-        */
-        keyEnter: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.array]),
-
-        /**
-         * The `keyLeave` determines what key/keys are responsible for `leaving` this container and go to the parent focus-container.
-         * Valid values are charcodes possible prepende with
-         * a special key: 39 or `shift+39` or `ctrl+shift+39`. Multiple key combinations can be defined bydefining an array of keyUp-values.
-         *
-         * @property keyLeave
-         * @default 27
-         * @type String|number|Array
-         * @since 15.0.0
-        */
-        keyLeave: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.array]),
-
-        /**
-         * What key/keys are responsible for selecting an option by keyboard. Valid values are charcodes possible prepended with
-         * a special key: 9 or `shift+9` or `ctrl+shift+9`. Multiple key combinations can be defined bydefining an array of keyUp-values.
-         *
-         * @property keyUp
-         * @default [13, 32]
-         * @type String|number|Array
-         * @since 15.0.0
-        */
-        keySelect: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
-
-        /**
-         * What key/keys are responsible for re-focussing `up`. Valid values are charcodes possible prepended with
-         * a special key: 9 or `shift+9` or `ctrl+shift+9`. Multiple key combinations can be defined bydefining an array of keyUp-values.
-         *
-         * @property keyUp
-         * @default 38
-         * @type String|number|Array
-         * @since 15.0.0
-        */
-        keyUp: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.array]),
-
-        /**
-         * Whether the loop the focus when the last/first option is reached.
-         *
-         * @property loop
-         * @default false
-         * @type Boolean
-         * @since 15.0.0
-        */
-        loop: PropTypes.bool,
-
-        /**
-         * Whether multiple options can be selected at the same time.
-         *
-         * @property multi
-         * @default false
-         * @type Boolean
-         * @since 15.0.0
-        */
-        multi: PropTypes.bool,
-
-        /**
-         * Callback whenever a new value is set. The callbackFn will recieve 1 argment: the new `checked` option(s).
-         * Which is a `number` in case `props.multi`===fals,e, otherwise it is an array with numbers.
-         *
-         * @property onChange
-         * @required
-         * @type Function
-         * @since 15.0.0
-        */
-        onChange: PropTypes.func.isRequired,
-
-        /**
-         * Callback for when the component did mount.
-         *
-         * @property onMount
-         * @type Function
-         * @since 15.0.8
-        */
-        onMount: PropTypes.func,
-
-        /**
-         * List with all options
-         *
-         * @property options
-         * @type Array
-         * @required
-         * @since 15.0.0
-        */
-        options: PropTypes.array.isRequired,
-
-        /**
-         * Whether the focussed option should be scrolled into the view when the focusselector focuses it.
-         *
-         * @property scrollIntoView
-         * @default false
-         * @type String
-         * @since 15.0.30
-        */
-        scrollIntoView: PropTypes.bool,
-
-        /**
-         * Selector on which the focusmanager should check against when refocussing
-         *
-         * @property selector
-         * @type String
-         * @since 15.0.0
-        */
-        selector: PropTypes.string,
-
-        /**
-         * Inline styles for the focus-container
-         *
-         * @property style
-         * @type Object
-         * @since 15.0.0
-        */
-        style: PropTypes.object,
-
-        /**
-         * The tabIndex
-         *
-         * @property tabIndex
-         * @type Number
-         * @since 0.0.1
-        */
-        tabIndex: PropTypes.number,
-
-        /**
-         * The transition-time when the window needs to be scrolled in order to get the focussable node into the view.
-         *
-         * @property transitionTime
-         * @type Number
-         * @since 15.0.0
-        */
-        transitionTime: PropTypes.number
-    },
+class Component extends React.Component {
+    constructor(props) {
+        super(props);
+        const instance = this;
+        instance.getFirstSelected = instance.getFirstSelected.bind(instance);
+        instance.handleSetOption = instance.handleSetOption.bind(instance);
+        instance.focus = instance.focus.bind(instance);
+        instance.focusOption = instance.focusOption.bind(instance);
+        instance.renderItem = instance.renderItem.bind(instance);
+        instance.handleKeyPress = instance.handleKeyPress.bind(instance);
+        instance.isValid = instance.isValid.bind(instance);
+        instance._saveHTML = instance._saveHTML.bind(instance);
+        instance._toOnlyOne = instance._toOnlyOne.bind(instance);
+    }
 
     /**
      * componentDidMount will call `this.activatePlaces()`;
@@ -258,30 +64,7 @@ const Component = React.createClass({
         const instance = this;
         instance._domNode = ReactDom.findDOMNode(instance);
         instance.props.autoFocus && instance.focus();
-    },
-
-
-    /**
-     * Returns the default properties.
-     *
-     * @method getDefaultProps
-     * @since 0.0.1
-     */
-    getDefaultProps() {
-        return {
-            checked: [],
-            dangerousInnerHTML: false,
-            keyDown: 40,
-            keyEnter: 13,
-            keySelect: [13, 32],
-            keyUp: 38,
-            loop: false,
-            multi: false,
-            scrollIntoView: false,
-            selector: ".itsa-option-option"
-        };
-    },
-
+    }
 
     /**
      * Returns the index of the first option that is selected
@@ -302,8 +85,7 @@ const Component = React.createClass({
         cloned = checked.itsa_deepClone();
         cloned.sort(sortFn);
         return cloned[0];
-    },
-
+    }
 
     /**
      * Sets a new option.
@@ -317,7 +99,7 @@ const Component = React.createClass({
         const instance = this,
             props = instance.props,
             checked = props.checked;
-        if (!props.disabled) {
+        if (!props.disabled && !props.readOnly) {
             if (!instance.props.multi) {
                 newValue = index;
             } else {
@@ -333,8 +115,7 @@ const Component = React.createClass({
             async(() => instance.refs["focus-container"].focusElement(index));
             return props.onChange(newValue);
         }
-    },
-
+    }
 
     /**
      * Sets the focus on the active Element of the Container.
@@ -347,8 +128,7 @@ const Component = React.createClass({
         const instance = this,
             index = instance.getFirstSelected();
         return (typeof index === "number") ? instance.focusOption(index) : instance.refs["focus-container"].focusActiveElement();
-    },
-
+    }
 
     /**
      * Sets the focus on the specified Element of the Container.
@@ -360,8 +140,7 @@ const Component = React.createClass({
      */
     focusOption(index) {
         return this.refs["focus-container"].focusElement(index);
-    },
-
+    }
 
     /**
      * Render-function for the options. You can use this property to override the default
@@ -392,8 +171,7 @@ const Component = React.createClass({
                 <div className={OPTION_TEXT_CLASS} dangerouslySetInnerHTML={{__html: option }} />
             </li>
         );
-    },
-
+    }
 
     /**
      * Callback for the keypress event.
@@ -404,16 +182,18 @@ const Component = React.createClass({
      */
     handleKeyPress(e) {
         let liNodes, index, keySelect;
-        const instance = this;
-        keySelect = instance.props.keySelect;
-        (typeof keySelect === "number") && (keySelect = [keySelect]);
-        if (keySelect.itsa_contains(e.charCode)) {
-            liNodes = instance._domNode.firstElementChild.children; // array-like object
-            index = Array.prototype.indexOf.call(liNodes, e.target);
-            instance.handleSetOption(index);
+        const instance = this,
+            props = instance.props;
+        if (!props.disabled && !props.readOnly) {
+            keySelect = props.keySelect;
+            (typeof keySelect === "number") && (keySelect = [keySelect]);
+            if (keySelect.itsa_contains(e.charCode)) {
+                liNodes = instance._domNode.firstElementChild.children; // array-like object
+                index = Array.prototype.indexOf.call(liNodes, e.target);
+                instance.handleSetOption(index);
+            }
         }
-    },
-
+    }
 
     /**
      * Tells ifthe Component has a valid option selected.
@@ -425,8 +205,7 @@ const Component = React.createClass({
     isValid() {
         const checked = this.props.checked;
         return (typeof checked === "number") || (checked.length > 0);
-    },
-
+    }
 
     /**
      * React render-method --> renderes the Component.
@@ -439,6 +218,7 @@ const Component = React.createClass({
         var classname = MAIN_CLASS + FORM_ELEMENT_CLASS_SPACED;
         var instance = this,
             props = instance.props,
+            disabled = props.disabled,
             propsChecked = props.checked,
             propsClass = props.className,
             checked = (typeof propsChecked === "number") ? [propsChecked] : propsChecked,
@@ -451,10 +231,12 @@ const Component = React.createClass({
                                        );
 
         propsClass && (classname += " " + propsClass);
+        disabled && (classname += " " + DISABLED_CLASS)
+        props.readOnly && (classname += " " + READONLY_CLASS)
         return (
             <FocusContainer
                 className={classname}
-                disabled={props.disabled}
+                disabled={disabled}
                 focusOnContainerClick={true}
                 keyDown={props.keyDown}
                 keyEnter={props.keyEnter}
@@ -473,8 +255,7 @@ const Component = React.createClass({
                 </ul>
             </FocusContainer>
         );
-    },
-
+    }
 
     /**
      * Returns a save string
@@ -487,8 +268,7 @@ const Component = React.createClass({
      */
     _saveHTML(html) {
         return html && html.replace(/<[^>]*>/g, "");
-    },
-
+    }
 
     /**
      * Returns an array based upon `checked`, with the length of `this.props.options`,
@@ -519,6 +299,240 @@ const Component = React.createClass({
         }
         return result;
     }
-});
+}
+
+Component.propTypes = {
+    /**
+     * Whether to autofocus the Component.
+     *
+     * @property autoFocus
+     * @type Boolean
+     * @default false
+     * @since 0.0.1
+    */
+    autoFocus: PropTypes.bool,
+
+    /**
+     * A number -or Array with numbers- that define the option that is selected
+     *
+     * @property checked
+     * @type Number|Array
+     * @since 0.0.1
+    */
+    checked: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
+
+    /**
+     * Whether render the options as HTML. When set `false`, they will be plain text, removed from any html-entities.
+     *
+     * @property dangerousInnerHTML
+     * @type Boolean
+     * @default false
+     * @since 0.0.1
+    */
+    dangerousInnerHTML: PropTypes.bool,
+
+    /**
+     * Whether the focuscontainer is disabled (doesn't response to focusevents and has light-gray options)
+     *
+     * @property disabled
+     * @type Boolean
+     * @since 15.0.0
+    */
+    disabled: PropTypes.bool,
+
+    /**
+     * Render-function for the options. You can use this property to override the default
+     * renderer. When not set, the default-renderer will be used.
+     *
+     * This function gets called for every option of the `this.props.options` array.
+     * The function recieves 3 arguments: `option`, `index`, `checked`
+     * Should return a JSX li-element.
+     *
+     * @property ItemRenderer
+     * @type Function
+     * @return JSX li-element
+     * @since 0.0.1
+    */
+    itemRenderer: PropTypes.func,
+
+    /**
+     * What key/keys are responsible for re-focussing `down`. Valid values are charcodes possible prepende with
+     * a special key: 9 or `shift+9` or `ctrl+shift+9`. Multiple key combinations can be defined bydefining an array of keyDown-values.
+     *
+     * @property keyDown
+     * @default 40
+     * @type String|number|Array
+     * @since 15.0.0
+    */
+    keyDown: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.array]),
+
+    /**
+     * Whenever `keyEnter` is set, then the focus-container will become a `nested`- focuscontainer.
+     * Nested focuscontainers will automaticcaly become focussable by their parent-container.
+     *
+     * The `keyEnter` determines what key/keys are responsible for `entering` this container. Valid values are charcodes possible prepende with
+     * a special key: 39 or `shift+39` or `ctrl+shift+39`. Multiple key combinations can be defined bydefining an array of keyUp-values.
+     *
+     * @property keyEnter
+     * @default 13
+     * @type String|number|Array
+     * @since 15.0.0
+    */
+    keyEnter: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.array]),
+
+    /**
+     * The `keyLeave` determines what key/keys are responsible for `leaving` this container and go to the parent focus-container.
+     * Valid values are charcodes possible prepende with
+     * a special key: 39 or `shift+39` or `ctrl+shift+39`. Multiple key combinations can be defined bydefining an array of keyUp-values.
+     *
+     * @property keyLeave
+     * @default 27
+     * @type String|number|Array
+     * @since 15.0.0
+    */
+    keyLeave: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.array]),
+
+    /**
+     * What key/keys are responsible for selecting an option by keyboard. Valid values are charcodes possible prepended with
+     * a special key: 9 or `shift+9` or `ctrl+shift+9`. Multiple key combinations can be defined bydefining an array of keyUp-values.
+     *
+     * @property keyUp
+     * @default [13, 32]
+     * @type String|number|Array
+     * @since 15.0.0
+    */
+    keySelect: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
+
+    /**
+     * What key/keys are responsible for re-focussing `up`. Valid values are charcodes possible prepended with
+     * a special key: 9 or `shift+9` or `ctrl+shift+9`. Multiple key combinations can be defined bydefining an array of keyUp-values.
+     *
+     * @property keyUp
+     * @default 38
+     * @type String|number|Array
+     * @since 15.0.0
+    */
+    keyUp: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.array]),
+
+    /**
+     * Whether the loop the focus when the last/first option is reached.
+     *
+     * @property loop
+     * @default false
+     * @type Boolean
+     * @since 15.0.0
+    */
+    loop: PropTypes.bool,
+
+    /**
+     * Whether multiple options can be selected at the same time.
+     *
+     * @property multi
+     * @default false
+     * @type Boolean
+     * @since 15.0.0
+    */
+    multi: PropTypes.bool,
+
+    /**
+     * Callback whenever a new value is set. The callbackFn will recieve 1 argment: the new `checked` option(s).
+     * Which is a `number` in case `props.multi`===fals,e, otherwise it is an array with numbers.
+     *
+     * @property onChange
+     * @required
+     * @type Function
+     * @since 15.0.0
+    */
+    onChange: PropTypes.func.isRequired,
+
+    /**
+     * Callback for when the component did mount.
+     *
+     * @property onMount
+     * @type Function
+     * @since 15.0.8
+    */
+    onMount: PropTypes.func,
+
+    /**
+     * List with all options
+     *
+     * @property options
+     * @type Array
+     * @required
+     * @since 15.0.0
+    */
+    options: PropTypes.array.isRequired,
+
+    /**
+     * Whether the focuscontainer is readOnly (doesn't response to focusevents)
+     *
+     * @property readOnly
+     * @type Boolean
+     * @since 15.0.4
+    */
+    readOnly: PropTypes.bool,
+
+    /**
+     * Whether the focussed option should be scrolled into the view when the focusselector focuses it.
+     *
+     * @property scrollIntoView
+     * @default false
+     * @type String
+     * @since 15.0.30
+    */
+    scrollIntoView: PropTypes.bool,
+
+    /**
+     * Selector on which the focusmanager should check against when refocussing
+     *
+     * @property selector
+     * @type String
+     * @since 15.0.0
+    */
+    selector: PropTypes.string,
+
+    /**
+     * Inline styles for the focus-container
+     *
+     * @property style
+     * @type Object
+     * @since 15.0.0
+    */
+    style: PropTypes.object,
+
+    /**
+     * The tabIndex
+     *
+     * @property tabIndex
+     * @type Number
+     * @since 0.0.1
+    */
+    tabIndex: PropTypes.number,
+
+    /**
+     * The transition-time when the window needs to be scrolled in order to get the focussable node into the view.
+     *
+     * @property transitionTime
+     * @type Number
+     * @since 15.0.0
+    */
+    transitionTime: PropTypes.number
+};
+
+Component.defaultProps = {
+    checked: [],
+    dangerousInnerHTML: false,
+    disabled: false,
+    keyDown: 40,
+    keyEnter: 13,
+    keySelect: [13, 32],
+    keyUp: 38,
+    loop: false,
+    multi: false,
+    readOnly: false,
+    scrollIntoView: false,
+    selector: ".itsa-option-option"
+};
 
 module.exports = Component;
