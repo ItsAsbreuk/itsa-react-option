@@ -22467,7 +22467,6 @@
 
 	var React = __webpack_require__(1),
 	    PropTypes = __webpack_require__(190),
-	    ReactDom = __webpack_require__(37),
 	    async = __webpack_require__(192).async,
 	    FocusContainer = __webpack_require__(198),
 	    MAIN_CLASS = "itsa-option",
@@ -22523,7 +22522,6 @@
 	        key: "componentDidMount",
 	        value: function componentDidMount() {
 	            var instance = this;
-	            instance._domNode = ReactDom.findDOMNode(instance);
 	            instance.props.autoFocus && instance.focus();
 	        }
 
@@ -22580,7 +22578,7 @@
 	                }
 	                // go async, to make proper rendering
 	                async(function () {
-	                    return instance.refs["focus-container"].focusElement(index);
+	                    return instance._focusContainer.focusElement(index);
 	                });
 	                return props.onChange(newValue);
 	            }
@@ -22599,7 +22597,7 @@
 	        value: function focus() {
 	            var instance = this,
 	                index = instance.getFirstSelected();
-	            return typeof index === "number" ? instance.focusOption(index) : instance.refs["focus-container"].focusActiveElement();
+	            return typeof index === "number" ? instance.focusOption(index) : instance._focusContainer.focusActiveElement();
 	        }
 
 	        /**
@@ -22614,7 +22612,7 @@
 	    }, {
 	        key: "focusOption",
 	        value: function focusOption(index) {
-	            return this.refs["focus-container"].focusElement(index);
+	            return this._focusContainer.focusElement(index);
 	        }
 
 	        /**
@@ -22735,7 +22733,12 @@
 	                    keyUp: props.keyUp,
 	                    loop: props.loop,
 	                    onMount: props.onMount,
-	                    ref: "focus-container",
+	                    ref: function ref(inst) {
+	                        if (!instance._focusContainer) {
+	                            instance._focusContainer = inst;
+	                            instance._domNode = instance._focusContainer._domNode;
+	                        }
+	                    },
 	                    scrollIntoView: props.scrollIntoView,
 	                    selector: props.selector,
 	                    style: props.style,

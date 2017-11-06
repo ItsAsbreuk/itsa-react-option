@@ -32,6 +32,7 @@ $bullet_inner_color_disabled: #F9F9F9;
 
 .itsa-option-option:focus {
     outline: 0;
+
     .itsa-option-text {
         color: $focus-color;
     }
@@ -79,9 +80,11 @@ $bullet_inner_color_disabled: #F9F9F9;
         border: solid $bullet_border_size $bullet_border_color_disabled;
         background-color: $bullet_inner_color_disabled;
     }
+
     .itsa-option-checked {
         opacity: 0.4;
     }
+
     .itsa-option-option:focus {
         .itsa-option-text {
             color: inherit;

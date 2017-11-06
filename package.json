@@ -1,6 +1,6 @@
 {
   "name": "itsa-react-option",
-  "version": "16.0.0",
+  "version": "16.0.4",
   "description": "React.js option element",
   "author": [
     {
@@ -31,12 +31,11 @@
     "lib": "./lib"
   },
   "peerDependencies": {
-    "react": ">=15",
-    "react-dom": ">=15"
+    "react": ">=15"
   },
   "dependencies": {
     "itsa-jsext": "^1.4.0",
-    "itsa-react-focuscontainer": "^16.0.0",
+    "itsa-react-focuscontainer": "^16.0.4",
     "itsa-utils": "^1.4.0",
     "prop-types": "^15.5.10"
   },

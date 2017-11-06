@@ -99,7 +99,6 @@
 
 const React = require(&quot;react&quot;),
     PropTypes = require(&quot;prop-types&quot;),
-    ReactDom = require(&quot;react-dom&quot;),
     async = require(&quot;itsa-utils&quot;).async,
     FocusContainer = require(&quot;itsa-react-focuscontainer&quot;),
     MAIN_CLASS = &quot;itsa-option&quot;,
@@ -145,7 +144,6 @@ class Component extends React.Component {
      */
     componentDidMount() {
         const instance = this;
-        instance._domNode = ReactDom.findDOMNode(instance);
         instance.props.autoFocus &amp;&amp; instance.focus();
     }
 
@@ -195,7 +193,7 @@ class Component extends React.Component {
                 }
             }
             // go async, to make proper rendering
-            async(() =&gt; instance.refs[&quot;focus-container&quot;].focusElement(index));
+            async(() =&gt; instance._focusContainer.focusElement(index));
             return props.onChange(newValue);
         }
     }
@@ -210,7 +208,7 @@ class Component extends React.Component {
     focus() {
         const instance = this,
             index = instance.getFirstSelected();
-        return (typeof index === &quot;number&quot;) ? instance.focusOption(index) : instance.refs[&quot;focus-container&quot;].focusActiveElement();
+        return (typeof index === &quot;number&quot;) ? instance.focusOption(index) : instance._focusContainer.focusActiveElement();
     }
 
     /**
@@ -222,7 +220,7 @@ class Component extends React.Component {
      * @since 0.0.1
      */
     focusOption(index) {
-        return this.refs[&quot;focus-container&quot;].focusElement(index);
+        return this._focusContainer.focusElement(index);
     }
 
     /**
@@ -327,7 +325,12 @@ class Component extends React.Component {
                 keyUp={props.keyUp}
                 loop={props.loop}
                 onMount={props.onMount}
-                ref=&quot;focus-container&quot;
+                ref={inst =&gt; {
+                    if (!instance._focusContainer) {
+                        instance._focusContainer = inst;
+                        instance._domNode = instance._focusContainer._domNode;
+                    }
+                }}
                 scrollIntoView={props.scrollIntoView}
                 selector={props.selector}
                 style={props.style}

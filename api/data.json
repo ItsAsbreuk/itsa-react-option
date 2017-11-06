@@ -55,7 +55,7 @@
     "classitems": [
         {
             "file": "lib/component.jsx",
-            "line": 57,
+            "line": 56,
             "description": "componentDidMount will call `this.activatePlaces()`;",
             "itemtype": "method",
             "name": "componentDidMount",
@@ -65,7 +65,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 69,
+            "line": 67,
             "description": "Returns the index of the first option that is selected",
             "itemtype": "method",
             "name": "getFirstSelected",
@@ -79,7 +79,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 90,
+            "line": 88,
             "description": "Sets a new option.",
             "itemtype": "method",
             "name": "handleSetOption",
@@ -96,7 +96,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 120,
+            "line": 118,
             "description": "Sets the focus on the active Element of the Container.",
             "itemtype": "method",
             "name": "focus",
@@ -107,7 +107,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 133,
+            "line": 131,
             "description": "Sets the focus on the specified Element of the Container.",
             "itemtype": "method",
             "name": "focusOption",
@@ -125,7 +125,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 145,
+            "line": 143,
             "description": "Render-function for the options. You can use this property to override the default\nrenderer. When not set, the default-renderer will be used.",
             "itemtype": "method",
             "name": "renderItem",
@@ -152,7 +152,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 176,
+            "line": 174,
             "description": "Callback for the keypress event.",
             "itemtype": "method",
             "name": "handleKeyPress",
@@ -169,7 +169,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 198,
+            "line": 196,
             "description": "Tells ifthe Component has a valid option selected.",
             "itemtype": "method",
             "name": "isValid",
@@ -183,7 +183,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 210,
+            "line": 208,
             "description": "React render-method --> renderes the Component.",
             "itemtype": "method",
             "name": "render",
@@ -196,7 +196,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 260,
+            "line": 263,
             "description": "Returns a save string",
             "itemtype": "method",
             "name": "_saveHTML",
@@ -217,7 +217,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 273,
+            "line": 276,
             "description": "Returns an array based upon `checked`, with the length of `this.props.options`,\nwhere only one item is `true` and the rest will be set `false`. The checked item is the first\nitem of the `this.props.checked` array.\n\nThis will quarantee that there is only 1 option marked as being selected.\nOnly be needed whenever `this.props.multi`===false.",
             "itemtype": "method",
             "name": "_toOnlyOne",
@@ -240,7 +240,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 305,
+            "line": 308,
             "description": "Whether to autofocus the Component.",
             "itemtype": "property",
             "name": "autoFocus",
@@ -252,7 +252,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 315,
+            "line": 318,
             "description": "A number -or Array with numbers- that define the option that is selected",
             "itemtype": "property",
             "name": "checked",
@@ -263,7 +263,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 324,
+            "line": 327,
             "description": "Whether render the options as HTML. When set `false`, they will be plain text, removed from any html-entities.",
             "itemtype": "property",
             "name": "dangerousInnerHTML",
@@ -275,7 +275,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 334,
+            "line": 337,
             "description": "Whether the focuscontainer is disabled (doesn't response to focusevents and has light-gray options)",
             "itemtype": "property",
             "name": "disabled",
@@ -286,7 +286,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 343,
+            "line": 346,
             "description": "Render-function for the options. You can use this property to override the default\nrenderer. When not set, the default-renderer will be used.\n\nThis function gets called for every option of the `this.props.options` array.\nThe function recieves 3 arguments: `option`, `index`, `checked`\nShould return a JSX li-element.",
             "itemtype": "property",
             "name": "ItemRenderer",
@@ -300,7 +300,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 358,
+            "line": 361,
             "description": "What key/keys are responsible for re-focussing `down`. Valid values are charcodes possible prepende with\na special key: 9 or `shift+9` or `ctrl+shift+9`. Multiple key combinations can be defined bydefining an array of keyDown-values.",
             "itemtype": "property",
             "name": "keyDown",
@@ -312,7 +312,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 369,
+            "line": 372,
             "description": "Whenever `keyEnter` is set, then the focus-container will become a `nested`- focuscontainer.\nNested focuscontainers will automaticcaly become focussable by their parent-container.\n\nThe `keyEnter` determines what key/keys are responsible for `entering` this container. Valid values are charcodes possible prepende with\na special key: 39 or `shift+39` or `ctrl+shift+39`. Multiple key combinations can be defined bydefining an array of keyUp-values.",
             "itemtype": "property",
             "name": "keyEnter",
@@ -324,7 +324,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 383,
+            "line": 386,
             "description": "The `keyLeave` determines what key/keys are responsible for `leaving` this container and go to the parent focus-container.\nValid values are charcodes possible prepende with\na special key: 39 or `shift+39` or `ctrl+shift+39`. Multiple key combinations can be defined bydefining an array of keyUp-values.",
             "itemtype": "property",
             "name": "keyLeave",
@@ -336,7 +336,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 395,
+            "line": 398,
             "description": "What key/keys are responsible for selecting an option by keyboard. Valid values are charcodes possible prepended with\na special key: 9 or `shift+9` or `ctrl+shift+9`. Multiple key combinations can be defined bydefining an array of keyUp-values.",
             "itemtype": "property",
             "name": "keyUp",
@@ -348,7 +348,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 406,
+            "line": 409,
             "description": "What key/keys are responsible for re-focussing `up`. Valid values are charcodes possible prepended with\na special key: 9 or `shift+9` or `ctrl+shift+9`. Multiple key combinations can be defined bydefining an array of keyUp-values.",
             "itemtype": "property",
             "name": "keyUp",
@@ -360,7 +360,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 417,
+            "line": 420,
             "description": "Whether the loop the focus when the last/first option is reached.",
             "itemtype": "property",
             "name": "loop",
@@ -372,7 +372,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 427,
+            "line": 430,
             "description": "Whether multiple options can be selected at the same time.",
             "itemtype": "property",
             "name": "multi",
@@ -384,7 +384,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 437,
+            "line": 440,
             "description": "Callback whenever a new value is set. The callbackFn will recieve 1 argment: the new `checked` option(s).\nWhich is a `number` in case `props.multi`===fals,e, otherwise it is an array with numbers.",
             "itemtype": "property",
             "name": "onChange",
@@ -396,7 +396,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 448,
+            "line": 451,
             "description": "Callback for when the component did mount.",
             "itemtype": "property",
             "name": "onMount",
@@ -407,7 +407,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 457,
+            "line": 460,
             "description": "List with all options",
             "itemtype": "property",
             "name": "options",
@@ -419,7 +419,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 467,
+            "line": 470,
             "description": "Whether the focuscontainer is readOnly (doesn't response to focusevents)",
             "itemtype": "property",
             "name": "readOnly",
@@ -430,7 +430,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 476,
+            "line": 479,
             "description": "Whether the focussed option should be scrolled into the view when the focusselector focuses it.",
             "itemtype": "property",
             "name": "scrollIntoView",
@@ -442,7 +442,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 486,
+            "line": 489,
             "description": "Selector on which the focusmanager should check against when refocussing",
             "itemtype": "property",
             "name": "selector",
@@ -453,7 +453,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 495,
+            "line": 498,
             "description": "Inline styles for the focus-container",
             "itemtype": "property",
             "name": "style",
@@ -464,7 +464,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 504,
+            "line": 507,
             "description": "The tabIndex",
             "itemtype": "property",
             "name": "tabIndex",
@@ -475,7 +475,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 513,
+            "line": 516,
             "description": "The transition-time when the window needs to be scrolled in order to get the focussable node into the view.",
             "itemtype": "property",
             "name": "transitionTime",
